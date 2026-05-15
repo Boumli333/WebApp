@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Recipe</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Add Recipe</h1>
+      <nav>
+        <a href="./index.html">Recipes</a>
+      </nav>
+    </header>
+
+    <main class="card">
+      <form id="add-recipe-form" class="stack">
+        <label>Title <input name="title" required /></label>
+        <label>Description <textarea name="description" required></textarea></label>
+        <label>Category <input name="category" required /></label>
+        <label>Base Serving Size <input name="baseServingSize" type="number" min="1" required /></label>
+        <label>Steps <textarea name="steps" required></textarea></label>
+        <label>
+          Ingredients (one per line: name|quantity|unit)
+          <textarea name="ingredients" required placeholder="Flour|200|g"></textarea>
+        </label>
+        <button type="submit">Save Recipe</button>
+      </form>
+    </main>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/add-recipe.js"></script>
+  </body>
+</html>
