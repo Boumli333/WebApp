@@ -1,12 +1,21 @@
 const crypto = require('crypto');
 
-function issueCsrfToken(req, res) {
+function parseCookies(header = '') {
+  return header.split(';').reduce((acc, chunk) => {
+    const [rawKey, ...rest] = chunk.split('=');
+    const key = (rawKey || '').trim();
+    if (!key) return acc;
+    acc[key] = decodeURIComponent(rest.join('=').trim());
+    return acc;
+  }, {});
+}
+
+function issueCsrfToken(_req, res) {
   const token = crypto.randomBytes(32).toString('hex');
-  res.cookie('csrf_token', token, {
-    httpOnly: false,
-    sameSite: 'lax',
-    secure: process.env.NODE_ENV === 'production'
-  });
+  res.setHeader(
+    'Set-Cookie',
+    `csrf_token=${encodeURIComponent(token)}; Path=/; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+  );
   res.json({ csrfToken: token });
 }
 
@@ -16,7 +25,8 @@ function verifyCsrf(req, res, next) {
     return next();
   }
 
-  const cookieToken = req.cookies.csrf_token;
+  const cookies = parseCookies(req.headers.cookie || '');
+  const cookieToken = cookies.csrf_token;
   const headerToken = req.headers['x-csrf-token'];
 
   if (!cookieToken || !headerToken) {
