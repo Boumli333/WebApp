@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Book</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>Recipe Book</h1>
+      <nav>
+        <a href="./index.html">Recipes</a>
+        <a href="./add-recipe.html">Add Recipe</a>
+        <a href="./favorites.html">My Favorites</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="auth-grid card">
+        <form id="register-form">
+          <h2>Register</h2>
+          <label>Email <input type="email" name="email" required /></label>
+          <label>Password <input type="password" name="password" required /></label>
+          <button type="submit">Create Account</button>
+        </form>
+        <form id="login-form">
+          <h2>Login</h2>
+          <label>Email <input type="email" name="email" required /></label>
+          <label>Password <input type="password" name="password" required /></label>
+          <button type="submit">Login</button>
+        </form>
+      </section>
+
+      <section class="toolbar card">
+        <label>
+          Search
+          <input id="search" type="search" placeholder="Title or ingredient" />
+        </label>
+        <label>
+          Category
+          <select id="category">
+            <option value="">All</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Dessert">Dessert</option>
+            <option value="Snacks">Snacks</option>
+          </select>
+        </label>
+      </section>
+
+      <section id="recipes" class="grid"></section>
+      <section class="pagination">
+        <button id="prev-page">Previous</button>
+        <span id="page-label">Page 1</span>
+        <button id="next-page">Next</button>
+      </section>
+    </main>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
